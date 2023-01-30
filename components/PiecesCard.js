@@ -1,8 +1,13 @@
-import { View, Text, TouchableOpacity, Image } from 'react-native'
+import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native'
 import React from 'react'
 import tw from 'tailwind-react-native-classnames'
 import { StarIcon } from 'react-native-heroicons/solid'
 import { useNavigation } from '@react-navigation/native'
+
+
+import * as FileSystem from 'expo-file-system';
+import * as Sharing from 'expo-sharing';
+import pptxgen from 'pptxgenjs';
 
 const PiecesCard = ({
     id,
@@ -58,5 +63,16 @@ const PiecesCard = ({
     </TouchableOpacity>
   )
 }
+
+const styles = StyleSheet.create({
+ 
+  image: {
+    flex: 1,
+    width: null,
+    height: null,
+    resizeMode: 'cover',
+    
+  },
+});
 
 export default PiecesCard

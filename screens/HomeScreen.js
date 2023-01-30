@@ -1,4 +1,4 @@
-import { View, Text, Image, TextInput, ScrollView } from 'react-native'
+import { View, Text, Image, TextInput, ScrollView, Platform } from 'react-native'
 import React, { useLayoutEffect, useEffect, useState } from 'react'
 import tw from 'tailwind-react-native-classnames'
 import { useNavigation } from '@react-navigation/native'
@@ -11,6 +11,8 @@ import Categories from '../components/Categories'
 import FeatureRow from '../components/FeatureRow'
 
 const HomeScreen = () => {
+
+    const isAndroid = Platform.OS ==='android'
     const navigation = useNavigation()
 
     useLayoutEffect(() => {
@@ -53,10 +55,12 @@ const HomeScreen = () => {
             <View style={tw`flex-row  items-center p-2 bg-white `}>
                 <Image source={{
                     // uri: 'https://imgtr.ee/images/2023/01/22/GpSbr.png'
-                    uri: 'https://imgtr.ee/images/2023/01/22/Gp2tJ.png'
+                    // uri: 'https://imgtr.ee/images/2023/01/22/Gp2tJ.png'
+                    // uri: "https://imgtr.ee/images/2023/01/28/G5JTV.jpg"
+                    uri: "https://imgtr.ee/images/2023/01/28/G5vM3.jpg"
                 }
                 }
-                    style={tw`h-14 w-14 p-4  `}
+                    style={tw`${isAndroid? 'h-14 w-28 p-4 ': 'h-24 w-56 p-4 '} `}
                 >
 
                 </Image>
@@ -68,23 +72,19 @@ const HomeScreen = () => {
                 <View
                     style={tw` p-2 ml-auto`}
                 >
-                    <UserIcon style={tw`h-6 w-6 text-yellow-900`} />
+                    {/* <UserIcon style={tw`h-6 w-6 text-yellow-900`} /> */}
 
                 </View>
             </View>
 
             {/* Search  */}
 
-            <View 
+            {/* <View 
             style={tw`flex-row items-center p-2 bg-white`}
              >
                 <View 
                 style={tw`flex-row items-center p-2 bg-gray-100 rounded-full w-11/12 mx-auto`}
                 >
-
-                {/* <CloudIcon
-                    style={tw`h-6 w-6 text-yellow-900`}
-                    /> */}
                     <AdjustmentsHorizontalIcon
                     style={tw`h-6 w-6 text-yellow-900`}
                     />
@@ -98,7 +98,7 @@ const HomeScreen = () => {
                     
 
 
-            </View>
+            </View> */}
 
             {/* Body  */}
            <ScrollView

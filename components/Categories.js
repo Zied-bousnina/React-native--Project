@@ -16,6 +16,8 @@ const Categories = () => {
         });
 }, []);
 
+// console.log(featuredCategories)
+
 // featuredCategories?.map((item) => {
 //   // console.log(item.image.asset._ref)
 
@@ -49,8 +51,10 @@ const Categories = () => {
           imgUrl={{uri:
             `https://cdn.sanity.io/images/plmmof9m/production/${(item.image.asset._ref).substring((item.image.asset._ref).indexOf("-")+1,(item.image.asset._ref).length-4)}.${item.image.asset._ref.substring(item.image.asset._ref.length-3)}`}
           }
+          id= {item._id}
 
           title={item.name}
+          pieces = {item.pieces}
           />
         ))
       }

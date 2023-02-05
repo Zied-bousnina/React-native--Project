@@ -9,7 +9,8 @@ import { AdjustmentsHorizontalIcon, ChevronLeftIcon, EyeIcon, EyeSlashIcon, Spar
 import { CloudIcon } from "react-native-heroicons/outline";
 import Categories from '../components/Categories'
 import FeatureRow from '../components/FeatureRow'
-
+import {firebase} from '../firebaseConfig'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 const HomeScreen = () => {
 
     const isAndroid = Platform.OS ==='android'
@@ -33,6 +34,31 @@ const HomeScreen = () => {
        
     // }, [])
     const [featuredCategories, setfeaturedCategories] = useState([])
+    const [name, setname] = useState('')
+
+    useEffect(() => {
+   firebase.firestore().collection('users')
+    .doc(firebase.auth().currentUser.uid)
+    .get()
+    .then((documentSnapshot) => {
+        if(documentSnapshot.exists){
+            setname(documentSnapshot.data())
+        }else{
+            console.log('does not exist')
+        }
+    }
+    )
+    .catch((error) => {
+        console.log(error)
+    }
+    )
+    
+    
+  }, []);
+
+  console.log(name)
+ 
+
 
 
     useEffect(() => {
@@ -44,6 +70,7 @@ const HomeScreen = () => {
             .catch((error) => {
                 console.error(error);
             });
+
     }, []);
 
     // console.log(featuredCategories)
@@ -72,7 +99,41 @@ const HomeScreen = () => {
                 <View
                     style={tw` p-2 ml-auto`}
                 >
-                    {/* <UserIcon style={tw`h-6 w-6 text-yellow-900`} /> */}
+                   
+                    {isAndroid ? (
+                        <UserIcon
+                        onPress={ 
+                            // ()=>firebase.auth().signOut()
+                            
+                            () => navigation.navigate('Profile',
+                            {
+                                id: firebase.auth().currentUser.uid,
+                                names:name
+    
+                                })
+                                
+                        }
+                         style={tw`h-6 w-6 text-yellow-900`} />
+                    ):(
+                        <TouchableOpacity
+                        onPress={
+                            ()=>{
+                                navigation.navigate('Profile',
+                                {
+                                    id: firebase.auth().currentUser.uid,
+                                    names:name
+        
+                                    })
+                                    }
+
+                            }
+                        >
+                        <Text
+                        style={tw`text-yellow-900 font-bold`}
+                        >profile</Text>
+                        </TouchableOpacity>
+                        
+                    )}
 
                 </View>
             </View>

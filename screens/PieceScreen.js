@@ -44,11 +44,15 @@ const PieceScreen = () => {
       
       <TouchableOpacity
         onPress={() => navigation.goBack()}
-        style={tw`absolute top-14 left-4 bg-gray-100  p-2 rounded-full `}
+        style={tw`absolute top-14  left-4
+        z-50
+        p-2
+
+         bg-gray-100  rounded-full `}
       >
         <ArrowLeftIcon
           color={"#00CCBB"}
-          size={20}
+          size={25}
         />
       </TouchableOpacity>
 
